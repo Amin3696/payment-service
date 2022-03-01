@@ -19,7 +19,7 @@ class CustomerRepositoryTest {
 	@Test void itShouldSelectCustomerByPhoneNumber() {
 		// Given
 		UUID id = UUID.randomUUID();
-		String phoneNumber = "0000";
+		String phoneNumber = "123456";
 		Customer customer = new Customer(id, "Abel", phoneNumber);
 		
 		// When
@@ -35,7 +35,7 @@ class CustomerRepositoryTest {
 	}
 	@Test void itShouldSelectCustomerByPhoneNumberWhenPhoneNrDoesNotExists() {
 		// Given
-		String phoneNumber = "0000";
+		String phoneNumber = "1111";
 		
 		// When
 		Optional<Customer> customer = underTest.selectCustomerByPhoneNumber(phoneNumber);
@@ -70,7 +70,7 @@ class CustomerRepositoryTest {
 		// When
 		// Then
 		assertThatThrownBy(() -> underTest.save(customer)).hasMessageContaining(
-						"not-null property references a null or transient value : com.amigoscode.testing.customer.Customer.name; nested exception is org.hibernate.PropertyValueException: not-null property references a null or transient value : com.amigoscode.testing.customer.Customer.name")
+						"not-null property references a null or transient value : com.softwaretesting.paymentservice.customer.Customer.name;")
 				.isInstanceOf(DataIntegrityViolationException.class);
 	}
 	
@@ -82,7 +82,7 @@ class CustomerRepositoryTest {
 		// When
 		// Then
 		assertThatThrownBy(() -> underTest.save(customer)).hasMessageContaining(
-						"not-null property references a null or transient value : com.amigoscode.testing.customer.Customer.phoneNr")
+						"not-null property references a null or transient value : com.softwaretesting.paymentservice.customer.Customer.phoneNr")
 				.isInstanceOf(DataIntegrityViolationException.class);
 	}
 }
